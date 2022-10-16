@@ -1,0 +1,45 @@
+version: "3"
+
+services:
+  postgres_drivenops_db:
+    image: postgres
+    container_name: postgres_drivenops_db
+    restart: always
+    ports:
+      - 4457:5432
+    env_file:
+      - back-end/.env.test
+    volumes:
+      - pg_drivenops-db:/var/lib/postgresql/data
+
+  node_drivenops_app:
+    container_name: node_drivenops_app
+    build: ./back-end
+    ports:
+      - 5000:5000
+    depends_on:
+      - postgres_drivenops_db
+    env_file:
+      - back-end/.env.test
+
+  react_drivenops_app:
+    build: ./front-end
+    container_name: react_drivenops_app
+    volumes:
+      - build_react:/var/www/html
+
+  nginx:
+    build: ./nginx
+    container_name: nginx
+    ports:
+      - 80:80
+    volumes:
+      - build_react:/var/www/html
+    depends_on:
+      - postgres_drivenops_db
+      - node_drivenops_app
+      - react_drivenops_app
+
+volumes:
+  pg_drivenops-db:
+  build_react:
