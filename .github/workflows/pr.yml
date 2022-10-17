@@ -11,7 +11,7 @@ jobs:
         with:
           envkey_POSTGRES_USER: "postgres"
           envkey_POSTGRES_PASSWORD: "postgres"
-          envkey_POSTGRES_DB: "drivenops"
+          envkey_POSTGRES_DB: "drivenops_test"
           envkey_DATABASE_URL: "postgres://postgres:postgres@postgres_drivenops_db:5432/drivenops_test"
           file_name: .env.test
       - name: Run tests
