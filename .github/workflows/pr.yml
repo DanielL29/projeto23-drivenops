@@ -16,5 +16,3 @@ jobs:
           file_name: .env.test
       - name: Run tests
         run: docker-compose -f docker-compose-test.yml run node_drivenops_app npm run test
-      - name: Build
-        run: npm i && npm run build
