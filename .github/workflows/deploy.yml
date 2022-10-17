@@ -17,14 +17,14 @@ jobs:
           envkey_POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
           envkey_POSTGRES_DB: ${{ secrets.POSTGRES_DB }}
           envkey_DATABASE_URL: ${{ secrets.DATABASE_URL }}
-          directory: back-env/
+          directory: back-end/
           file_name: .env
           fail_on_empty: true
       - name: Create front-end env file
         uses: SpicyPizza/create-envfile@v1.3
         with:
           envkey_REACT_APP_BASE_URL: ${{ secrets.REACT_APP_BASE_URL }}
-          directory: front-env/
+          directory: front-end/
           file_name: .env
           fail_on_empty: true
       - name: Build process
